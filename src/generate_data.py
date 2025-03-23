@@ -21,4 +21,4 @@ def generate_synthetic_data(kappa=1.0, N=100, noise_std=0.0):
 
 if __name__ == "__main__":
     x, t, u = generate_synthetic_data()
-    print(x.shape, t.shape, u.shape)  # Should print (10000, 1) each
+    print(x.shape, t.shape, u.shape)  
