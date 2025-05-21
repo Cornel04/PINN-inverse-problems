@@ -39,7 +39,7 @@ model = PINN(layers)
 # -----------------------------
 optimizer_pre = optim.Adam(model.parameters(), lr=lr_pretrain)
 
-print("\n🔧 Pre-training (data loss only)...")
+print("\n Pre-training (data loss only)...")
 for it in range(pretrain_iters):
     optimizer_pre.zero_grad()
     loss_d = data_loss(model, x_train, t_train, u_train)
@@ -55,7 +55,7 @@ torch.save(model.state_dict(), "pretrained_model.pt")
 # -----------------------------
 # Fine-tuning: minimize data + PDE loss
 # -----------------------------
-print("\n⚙️ Fine-tuning (data + PDE)...")
+print("\n Fine-tuning (data + PDE)...")
 
 # Use L-BFGS for fine-tuning (second phase)
 optimizer_fine = optim.LBFGS(model.parameters(), max_iter=finetune_iters, tolerance_grad=1e-9, line_search_fn="strong_wolfe")
@@ -73,6 +73,6 @@ optimizer_fine.step(closure)
 # Final evaluation
 final_loss_d = data_loss(model, x_train, t_train, u_train).item()
 final_loss_p = pde_loss(model, x_colloc, t_colloc).item()
-print(f"\n✅ Final Data Loss: {final_loss_d:.6f}")
-print(f"✅ Final PDE Loss : {final_loss_p:.6f}")
-print(f"📦 Learned kappa  : {model.kappa.item():.6f}")
+print(f"\n Final Data Loss: {final_loss_d:.6f}")
+print(f" Final PDE Loss : {final_loss_p:.6f}")
+print(f" Learned kappa  : {model.kappa.item():.6f}")
