@@ -1,8 +1,0 @@
-notebooks/experiments.ipynb
-src/__pycache__
-src/HeatEquation/__pycache__
-pretrained_model.pt
-pretrained_model_wave.pt
-mlp_model.pt
-.DS_Store
-
